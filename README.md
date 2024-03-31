@@ -58,3 +58,42 @@ export default defineConfig({
 ```shell
 pnpm i sass -D
 ```
+
+# 使用 axios
+
+```shell
+pnpm i axios
+```
+
+# 配置环境变量
+
+创建 两个文件，分别对应 开发状态 和 生产状态
+
+1. `.env.development`
+2. `.env.production`
+
+然后 在文件中
+
+```shell
+# 标志
+VITE_ENV = 'development'
+
+# base api
+VITE_VUE_APP_BASE_API = '/api'
+```
+
+```shell
+# 标志
+VITE_ENV = 'production'
+
+# base api
+VITE_VUE_APP_BASE_API = '/prod-api'
+```
+
+使用 `import.meta.env` 进行访问
+
+```js
+console.log(import.meta.env)
+console.log(import.meta.env.VITE_VUE_APP_BASE_API)
+console.log(import.meta.env.VITE_ENV)
+```
