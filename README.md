@@ -50,3 +50,11 @@ export default defineConfig({
   ]
 })
 ```
+
+# 使用 sass
+
+安装
+
+```shell
+pnpm i sass -D
+```
