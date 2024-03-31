@@ -1,12 +1,39 @@
 <script setup>
-// import { ref } from 'vue'
+import { ref } from 'vue'
+import { validatePassword } from './rules'
 
-// const a = ref('')
+// 数据源
+const loginForm = ref({
+  username: 'super-admin',
+  password: '123456'
+})
+
+// 验证规则
+const loginRules = ref({
+  username: [
+    {
+      required: true,
+      trigger: 'blur',
+      message: '用户名为必填项'
+    }
+  ],
+  password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
+})
+
+const passwordType = ref('password')
+// 点击显示隐藏 密码
+const onChangePwdType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text'
+  } else {
+    passwordType.value = 'password'
+  }
+}
 </script>
 
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFn">
+    <el-form class="login-form" ref="loginFn" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -22,25 +49,29 @@
           </span> -->
         </span>
 
-        <el-input placeholder="username" name="username" type="text" />
+        <el-input placeholder="username" name="username" type="text" v-model="loginForm.username" />
       </el-form-item>
 
       <el-form-item prop="password">
         <!-- 图标 -->
         <span class="svg-container">
           <el-icon>
-            <avatar />
+            <lock />
           </el-icon>
         </span>
 
-        <el-input placeholder="password" name="password" />
+        <el-input
+          placeholder="password"
+          name="password"
+          :type="passwordType"
+          v-model="loginForm.username"
+        />
 
-        <span class="show-pwd">
-          <!-- <el-icon>
-            <View />
-          </el-icon> -->
-
-          <el-icon><Hide /></el-icon>
+        <span class="show-pwd" @click="onChangePwdType">
+          <el-icon>
+            <Hide v-if="passwordType === 'password'" />
+            <View v-else />
+          </el-icon>
         </span>
       </el-form-item>
 
