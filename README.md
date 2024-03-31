@@ -1,35 +1,52 @@
-# vue-BMS-solution
+# 项目简介
 
-This template should help get you started developing with Vue 3 in Vite.
+改项目是一个后台管理系统 通用解决方案
 
-## Recommended IDE Setup
+技术栈为：vue3 + vue-router + piniapnpm install element-plus
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+# 项目初始化
 
-## Customize configuration
+## 使用 element-plus
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+安装
 
-## Project Setup
+```shell
+# NPM
+$ npm install element-plus --save
 
-```sh
-npm install
+# Yarn
+$ yarn add element-plus
+
+# pnpm
+$ pnpm install element-plus
 ```
 
-### Compile and Hot-Reload for Development
+使用 自动导入
 
-```sh
-npm run dev
+```shell
+npm install -D unplugin-vue-components unplugin-auto-import
 ```
 
-### Compile and Minify for Production
+在 `vite` 中 做如下配置
 
-```sh
-npm run build
-```
+```js
+// vite.config.js
 
-### Lint with [ESLint](https://eslint.org/)
+//...
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
-```sh
-npm run lint
+export default defineConfig({
+  // ...
+  plugins: [
+    // ...
+    AutoImport({
+      resolvers: [ElementPlusResolver()]
+    }),
+    Components({
+      resolvers: [ElementPlusResolver()]
+    })
+  ]
+})
 ```

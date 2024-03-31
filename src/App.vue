@@ -1,13 +1,14 @@
-<script setup>
-let a = 3
-console.log(a)
-
-let b = 4
-console.log(b)
-</script>
+<script setup></script>
 
 <template>
-  <div class="box">app</div>
+  <div class="box">
+    <el-button>Default</el-button>
+    <el-button type="primary">Primary</el-button>
+    <el-button type="success">Success</el-button>
+    <el-button type="info">Info</el-button>
+    <el-button type="warning">Warning</el-button>
+    <el-button type="danger">Danger</el-button>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style scoped></style>
