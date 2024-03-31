@@ -17,6 +17,9 @@
           <el-icon>
             <avatar />
           </el-icon>
+          <!-- <span class="svg-container">
+            <svg-icon icon="https://res.lgdsunday.club/user.svg"></svg-icon>
+          </span> -->
         </span>
 
         <el-input placeholder="username" name="username" type="text" />
@@ -33,9 +36,11 @@
         <el-input placeholder="password" name="password" />
 
         <span class="show-pwd">
-          <el-icon>
-            <avatar />
-          </el-icon>
+          <!-- <el-icon>
+            <View />
+          </el-icon> -->
+
+          <el-icon><Hide /></el-icon>
         </span>
       </el-form-item>
 
