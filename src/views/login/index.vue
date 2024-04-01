@@ -90,7 +90,7 @@ const handleLogin = () => {
           placeholder="password"
           name="password"
           :type="passwordType"
-          v-model="loginForm.username"
+          v-model="loginForm.password"
         />
 
         <span class="show-pwd" @click="onChangePwdType">
