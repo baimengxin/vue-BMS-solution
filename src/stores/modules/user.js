@@ -1,4 +1,4 @@
-import { login } from '@/api/sys'
+import { login, getUserInfo } from '@/api/sys'
 
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
@@ -13,6 +13,8 @@ import router from '@/router'
 export const useUserStore = defineStore('user', () => {
   // 其他配置...
   const token = ref(getItem(TOKEN) || '')
+  // 用户信息
+  const userInfo = ref({})
 
   // 保存 token 的数据
   const setToken = (value) => {
@@ -39,5 +41,12 @@ export const useUserStore = defineStore('user', () => {
     })
   }
 
-  return { token, getLoginFn }
+  // 请求用户信息
+  const getUserInfoFn = async () => {
+    const res = await getUserInfo()
+    // 保存到用户信息
+    userInfo.value = res
+  }
+
+  return { token, userInfo, getLoginFn, getUserInfoFn }
 })
