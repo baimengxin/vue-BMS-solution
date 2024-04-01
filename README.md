@@ -97,3 +97,9 @@ console.log(import.meta.env)
 console.log(import.meta.env.VITE_VUE_APP_BASE_API)
 console.log(import.meta.env.VITE_ENV)
 ```
+
+# 使用 md5
+
+```shell
+pnpm i --save md5
+```
