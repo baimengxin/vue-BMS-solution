@@ -10,7 +10,7 @@ const whiteList = ['/login']
 // 路由前置守卫
 router.beforeEach((to, from, next) => {
   const store = useUserStore()
-  console.log(store.token)
+
   // 存在 token，直接进入主页
   if (store.token) {
     // 有 token，还想前往 登录页

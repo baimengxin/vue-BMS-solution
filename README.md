@@ -56,7 +56,7 @@ export default defineConfig({
 安装
 
 ```shell
-pnpm i sass -D
+pnpm i sass sass-loader -D
 ```
 
 # 使用 axios
