@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { validatePassword } from './rules'
+import { useUserStore } from '@/stores'
 
 // 数据源
 const loginForm = ref({
@@ -20,6 +21,7 @@ const loginRules = ref({
   password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
 })
 
+// 密码类型
 const passwordType = ref('password')
 // 点击显示隐藏 密码
 const onChangePwdType = () => {
@@ -29,11 +31,35 @@ const onChangePwdType = () => {
     passwordType.value = 'password'
   }
 }
+
+// 登录状态的处理
+const loading = ref(false)
+const loginFromRef = ref(null)
+const store = useUserStore()
+
+// console.log()
+const handleLogin = () => {
+  loginFromRef.value.validate((vaild) => {
+    if (!vaild) return
+
+    loading.value = true
+
+    store
+      .getLoginFn(loginForm.value)
+      .then(() => {
+        loading.value = false
+      })
+      .catch((err) => {
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 
 <template>
   <div class="login-container">
-    <el-form class="login-form" ref="loginFn" :model="loginForm" :rules="loginRules">
+    <el-form class="login-form" ref="loginFromRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
         <h3 class="title">用户登录</h3>
       </div>
@@ -75,7 +101,13 @@ const onChangePwdType = () => {
         </span>
       </el-form-item>
 
-      <el-button type="primary" style="width: 100%; margin-bottom: 30px">登录</el-button>
+      <el-button
+        type="primary"
+        style="width: 100%; margin-bottom: 30px"
+        :loading="loading"
+        @click="handleLogin"
+        >登录</el-button
+      >
     </el-form>
   </div>
 </template>
@@ -155,3 +187,4 @@ const onChangePwdType = () => {
   user-select: none;
 }
 </style>
+@/stores/modules/user
