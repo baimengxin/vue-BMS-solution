@@ -11,6 +11,7 @@ import '@/styles/index.scss'
 // 导入 svgIcon
 import installIcons from '@/icons'
 // import 'virtual:svg-icons-register'
+import './permission'
 
 const app = createApp(App)
 
