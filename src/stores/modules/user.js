@@ -5,6 +5,7 @@ import { ref } from 'vue'
 import md5 from 'md5'
 import { getItem, setItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
+import router from '@/router'
 
 // 你可以任意命名 `defineStore()` 的返回值，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。
 // (比如 `useUserStore`，`useCartStore`，`useProductStore`)
@@ -30,6 +31,7 @@ export const useUserStore = defineStore('user', () => {
         .then((data) => {
           setToken(data.token)
           resolve()
+          router.push('/')
         })
         .catch((err) => {
           reject(err)

@@ -20,11 +20,16 @@ service.interceptors.response.use(
 
     // 请求成功
     if (success) {
+      ElMessage({
+        message: message,
+        type: 'success'
+      })
       return data
     } else {
       // 请求成功，业务失败
       // 1. 提示错误信息
       ElMessage.error(message)
+
       // 2. 返回错误
       return Promise.reject(new Error(message))
     }
