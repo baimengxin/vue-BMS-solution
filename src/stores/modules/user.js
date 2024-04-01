@@ -28,8 +28,7 @@ export const useUserStore = defineStore('user', () => {
         password: md5(password)
       })
         .then((data) => {
-          console.log(data.data.data.token)
-          setToken(data.data.data.token)
+          setToken(data.token)
           resolve()
         })
         .catch((err) => {
