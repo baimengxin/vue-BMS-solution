@@ -1,0 +1,24 @@
+// sidebar
+$menuText: #bfcbd9;
+$menuActiveText: #ffffff;
+$subMenuActiveText: #f4f4f5;
+
+$menuBg: #304156;
+$menuHover: #263445;
+
+$subMenuBg: #1f2d3d;
+$subMenuHover: #001528;
+
+$sideBarWidth: 210px;
+
+// 将Sass变量转换为 CSS 自定义属性（CSS Variables），可以在任何CSS或Sass文件中通过 var(--variable-name) 的方式引用它们。
+:root {
+  --menu-text: #{$menuText};
+  --menu-active-text: #{$menuActiveText};
+  --sub-menu-active-text: #{$subMenuActiveText};
+  --menu-bg: #{$menuBg};
+  --menu-hover: #{$menuHover};
+  --sub-menu-bg: #{$subMenuBg};
+  --sub-menu-hover: #{$subMenuHover};
+  --side-bar-width: #{$sideBarWidth};
+}

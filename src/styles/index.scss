@@ -1,3 +1,8 @@
+@import './variables.scss';
+@import './mixin.scss';
+@import './sidebar.scss';
+@import './update-element.scss';
+
 html,
 body {
   height: 100%;
@@ -55,8 +60,3 @@ div:focus {
     height: 0;
   }
 }
-
-// $bg: #2d3a4b;
-// $dark_gray: #889aa4;
-// $light_gray: #eee;
-// $cursor: #fff;
