@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores'
+import { isCheckTimeout } from './auth'
 
 const service = axios.create({
   baseURL: import.meta.env.VITE_VUE_APP_BASE_API,
@@ -13,6 +14,13 @@ service.interceptors.request.use(
     const store = useUserStore()
 
     if (store.token) {
+      if (isCheckTimeout()) {
+        // 退出登录
+        // 主动介入 (前端设置的过期时间结束，主动退出)
+        store.logoutFn()
+        return Promise.reject(new Error('token 失效'))
+      }
+
       // 如果 token 存在注入 token
       config.headers.Authorization = `Bearer ${store.token}`
     }
@@ -20,6 +28,7 @@ service.interceptors.request.use(
     return config // 必须返回配置
   },
   (error) => {
+    ElMessage.error(error.message)
     return Promise.reject(error)
   }
 )
@@ -47,6 +56,13 @@ service.interceptors.response.use(
     }
   },
   (error) => {
+    // 判断后端返回的 token 是否过期
+    if (error.response && error.response.data && error.response.data.code === '401') {
+      // token过期，退出登录
+      // 被动介入 (后端告知过期)
+      useUserStore().logoutFn()
+    }
+
     // 请求失败
     ElMessage.error(error.message)
     return Promise.reject(error)

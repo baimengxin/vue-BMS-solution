@@ -20,11 +20,9 @@ router.beforeEach(async (to, from, next) => {
     } else {
       // 判断当前是否已存在用户信息
       // 空对象则返回 true，表示当前没有用户信息
-      console.log(store.userInfo)
       if (isEmptyObject(store.userInfo)) {
         // 发起用户信息请求
         await store.getUserInfoFn()
-        console.log(store.userInfo)
       }
       next()
     }

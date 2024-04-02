@@ -3,9 +3,10 @@ import { login, getUserInfo } from '@/api/sys'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import md5 from 'md5'
-import { getItem, setItem } from '@/utils/storage'
+import { getItem, setItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
+import { setTimeStamp } from '@/utils/auth'
 
 // 你可以任意命名 `defineStore()` 的返回值，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。
 // (比如 `useUserStore`，`useCartStore`，`useProductStore`)
@@ -32,6 +33,8 @@ export const useUserStore = defineStore('user', () => {
       })
         .then((data) => {
           setToken(data.token)
+          // 保存登录时间
+          setTimeStamp()
           resolve()
           router.push('/')
         })
@@ -48,5 +51,17 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = res
   }
 
-  return { token, userInfo, getLoginFn, getUserInfoFn }
+  /**
+   * 退出登录
+   * */
+  const logoutFn = () => {
+    // 清空数据
+    token.value = ''
+    userInfo.value = {}
+    removeAllItem()
+    // 返回登录页
+    router.push('/login')
+  }
+
+  return { token, userInfo, getLoginFn, getUserInfoFn, logoutFn }
 })
