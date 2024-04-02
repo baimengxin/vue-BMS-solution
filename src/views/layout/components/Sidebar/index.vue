@@ -1,7 +1,12 @@
-<script setup></script>
+<script setup>
+// import SidebarMenu from '@/views/layout/components/Sidebar/SidebarMenu.vue'
+import SidebarMenu from './SidebarMenu.vue'
+</script>
 
 <template>
-  <div class="sidebar">左侧页面</div>
+  <div class="sidebar">
+    <SidebarMenu />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>

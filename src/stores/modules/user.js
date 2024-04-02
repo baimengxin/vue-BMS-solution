@@ -7,6 +7,7 @@ import { getItem, setItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
 import router from '@/router'
 import { setTimeStamp } from '@/utils/auth'
+import { ElMessage } from 'element-plus'
 
 // 你可以任意命名 `defineStore()` 的返回值，但最好使用 store 的名字，同时以 `use` 开头且以 `Store` 结尾。
 // (比如 `useUserStore`，`useCartStore`，`useProductStore`)
@@ -59,6 +60,10 @@ export const useUserStore = defineStore('user', () => {
     token.value = ''
     userInfo.value = {}
     removeAllItem()
+    ElMessage({
+      type: 'success',
+      message: '退出成功'
+    })
     // 返回登录页
     router.push('/login')
   }
