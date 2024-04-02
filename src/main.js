@@ -4,13 +4,14 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+import 'element-plus/dist/index.css'
 
 // 导入全局样式
 import '@/styles/index.scss'
 
 // 导入 svgIcon
 import installIcons from '@/icons'
-// import 'virtual:svg-icons-register'
+
 import './permission'
 
 const app = createApp(App)
