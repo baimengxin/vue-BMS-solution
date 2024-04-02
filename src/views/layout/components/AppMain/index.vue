@@ -1,7 +1,9 @@
 <script setup></script>
 
 <template>
-  <div class="main">右侧主页面</div>
+  <div class="main">
+    <router-view></router-view>
+  </div>
 </template>
 
 <style lang="scss" scoped>
