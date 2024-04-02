@@ -1,4 +1,16 @@
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router'
+import { filterRouters, generateMenus } from '@/utils/route'
+import { computed } from 'vue'
+
+const router = useRouter()
+const routes = computed(() => {
+  // router.getRoutes() 返回所有的路由表
+  const filterRoutes = filterRouters(router.getRoutes())
+  return generateMenus(filterRoutes)
+})
+console.log(routes)
+</script>
 
 <template>
   <!-- 一级菜单 -->
