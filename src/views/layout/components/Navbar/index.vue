@@ -1,5 +1,6 @@
 <script setup>
 import Hamburger from '@/components/Hamburger/index.vue'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import { useUserStore } from '@/stores'
 
 const store = useUserStore()
@@ -12,6 +13,7 @@ const logout = () => {
   <div class="navbar">
     <!-- 控制左侧菜单栏的 汉堡包 -->
     <Hamburger class="hamburger-container" />
+    <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
       <!-- 头像 -->
@@ -55,6 +57,10 @@ const logout = () => {
     &:hover {
       background: rgba(0, 0, 0, 0.1);
     }
+  }
+
+  .breadcrumb-container {
+    float: left;
   }
 
   .right-menu {
