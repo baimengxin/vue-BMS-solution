@@ -10,6 +10,8 @@ $subMenuBg: #1f2d3d;
 $subMenuHover: #001528;
 
 $sideBarWidth: 210px;
+$hideSideBarWidth: 54px;
+$sideBarDuration: 0.28s;
 
 // 将Sass变量转换为 CSS 自定义属性（CSS Variables），可以在任何CSS或Sass文件中通过 var(--variable-name) 的方式引用它们。
 :root {

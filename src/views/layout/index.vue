@@ -2,15 +2,18 @@
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import { useMainStore } from '@/stores'
+
+const store = useMainStore()
 </script>
 
 <template>
-  <div class="layout-wrapper">
+  <div class="layout-wrapper" :class="[store.sidebarStatus ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧 menu -->
     <Sidebar class="sidebar-container" :style="{ backgroundColor: 'var(--menu-bg)' }" />
 
     <div class="main-container">
-      <div class="main-header">
+      <div class="fixed-header">
         <Navbar />
       </div>
 
@@ -23,7 +26,7 @@ import AppMain from './components/AppMain/index.vue'
 @import '@/styles/mixin.scss';
 @import '@/styles/variables.scss';
 
-.app-wrapper {
+.layout-wrapper {
   @include clearfix;
   position: relative;
   height: 100%;
@@ -35,6 +38,11 @@ import AppMain from './components/AppMain/index.vue'
   top: 0;
   right: 0;
   z-index: 9;
-  width: calc(100% - #{$sideBarWidth});
+  width: calc(100% - $sideBarWidth);
+  transition: width #{$sideBarDuration};
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - $hideSideBarWidth);
 }
 </style>

@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route'
 import { computed } from 'vue'
 import SidebarItem from './SidebarItem.vue'
+import { useMainStore } from '@/stores'
 
 const router = useRouter()
 const routes = computed(() => {
@@ -17,11 +18,14 @@ const activeMenu = computed(() => {
   const { path } = route
   return path
 })
+
+const store = useMainStore()
 </script>
 
 <template>
   <!-- 一级菜单 -->
   <el-menu
+    :collapse="!store.sidebarStatus"
     :default-active="activeMenu"
     :uniqueOpened="true"
     :background-color="'var(--menu-bg)'"
