@@ -2,6 +2,7 @@
 import { useRouter } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route'
 import { computed } from 'vue'
+import SidebarItem from './SidebarItem.vue'
 
 const router = useRouter()
 const routes = computed(() => {
@@ -9,7 +10,6 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
-console.log(routes)
 </script>
 
 <template>
@@ -21,19 +21,7 @@ console.log(routes)
     text-color="#fff"
     active-text-color="#ffd04b"
   >
-    <!-- 子集 menu 菜单 -->
-    <el-sub-menu index="1">
-      <template #title>
-        <span>导航一</span>
-      </template>
-      <el-menu-item index="1-1">选项1</el-menu-item>
-      <el-menu-item index="1-2">选项2</el-menu-item>
-    </el-sub-menu>
-
-    <!-- 具体菜单项 -->
-    <el-menu-item index="1-24">
-      <template #title>导航四</template>
-    </el-menu-item>
+    <SidebarItem v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
 </template>
 
