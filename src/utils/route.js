@@ -41,7 +41,7 @@ function isNull(data) {
  * 根据 routes 数据，返回对应 menu 规则数组
  */
 
-export const generateMenus = (routes, basePath = '') => {
+export const generateMenus = (routes) => {
   const result = []
 
   // 遍历路由表
@@ -58,7 +58,7 @@ export const generateMenus = (routes, basePath = '') => {
 
     // 合并 path 作为跳转路径
     // const routePath = path.resolve(basePath, item.path)
-    const routePath = `${basePath}/${item.path}`.replace(/\/+/g, '/')
+    const routePath = `${item.path}`.replace(/\/+/g, '/')
 
     // 路由分离之后，存在同名路由的情况，需要单独处理
     let route = result.find((item) => item.path === routePath)
