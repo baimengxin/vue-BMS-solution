@@ -1,5 +1,5 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route'
 import { computed } from 'vue'
 import SidebarItem from './SidebarItem.vue'
@@ -10,16 +10,24 @@ const routes = computed(() => {
   const filterRoutes = filterRouters(router.getRoutes())
   return generateMenus(filterRoutes)
 })
+
+// 激活项
+const route = useRoute()
+const activeMenu = computed(() => {
+  const { path } = route
+  return path
+})
 </script>
 
 <template>
   <!-- 一级菜单 -->
   <el-menu
+    :default-active="activeMenu"
     :uniqueOpened="true"
-    default-active="2"
-    background-color="#545c64"
-    text-color="#fff"
-    active-text-color="#ffd04b"
+    :background-color="'var(--menu-bg)'"
+    :text-color="'var(--menu-text)'"
+    :active-text-color="'var(--menu-active-text)'"
+    router
   >
     <SidebarItem v-for="item in routes" :key="item.path" :route="item" />
   </el-menu>
