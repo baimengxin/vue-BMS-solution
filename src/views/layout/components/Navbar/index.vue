@@ -1,6 +1,7 @@
 <script setup>
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import LangSelect from '@/components/LangSelect/index.vue'
 import { useUserStore } from '@/stores'
 
 const store = useUserStore()
@@ -13,9 +14,12 @@ const logout = () => {
   <div class="navbar">
     <!-- 控制左侧菜单栏的 汉堡包 -->
     <Hamburger class="hamburger-container" />
+    <!-- 面包屑 -->
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <!-- 国际化 -->
+      <LangSelect class="right-menu-item hover-effect" />
       <!-- 头像 -->
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -68,6 +72,18 @@ const logout = () => {
     align-items: center;
     float: right;
     padding-right: 16px;
+
+    :deep(.right-menu-ite) {
+      display: inline-block;
+      padding: 0 18px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
 
     :deep(.avatar-container) {
       cursor: pointer;
