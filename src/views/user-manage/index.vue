@@ -1,5 +1,7 @@
 <template>
-  <div class="">用户管理</div>
+  <div class="">
+    {{ $t('msg.test') }}
+  </div>
 </template>
 
 <script setup>

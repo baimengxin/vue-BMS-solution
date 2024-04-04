@@ -103,3 +103,9 @@ console.log(import.meta.env.VITE_ENV)
 ```shell
 pnpm i --save md5
 ```
+
+# 使用 vue-i18n
+
+```shell
+pnpm add vue-i18n@9
+```
