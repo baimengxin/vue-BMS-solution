@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '@/stores'
 import LangSelect from '@/components/LangSelect/index.vue'
@@ -19,7 +19,9 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: i18n.t('msg.login.usernameRule')
+      message: computed(() => {
+        return i18n.t('msg.login.usernameRule')
+      })
     }
   ],
   password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
