@@ -2,6 +2,7 @@
 import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
+import ThemeSelect from '@/components/ThemeSelect/index.vue'
 import { useUserStore } from '@/stores'
 
 const store = useUserStore()
@@ -18,6 +19,8 @@ const logout = () => {
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <!-- 动态换肤 -->
+      <ThemeSelect class="right-menu-item hover-effect" />
       <!-- 国际化 -->
       <LangSelect class="right-menu-item hover-effect" />
       <!-- 头像 -->
@@ -73,7 +76,7 @@ const logout = () => {
     float: right;
     padding-right: 16px;
 
-    :deep(.right-menu-ite) {
+    :deep(.right-menu-item) {
       display: inline-block;
       padding: 0 18px 0 0;
       font-size: 24px;
