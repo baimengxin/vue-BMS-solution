@@ -1,11 +1,17 @@
 <script setup>
-// console.log(import.meta.env)
-// console.log(import.meta.env.VITE_VUE_APP_BASE_API)
-// console.log(import.meta.env.VITE_ENV)
+import { useMainStore } from '@/stores'
+import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
+import en from 'element-plus/dist/locale/en.mjs'
+import { computed } from 'vue'
+
+const store = useMainStore()
+const locale = computed(() => (store.language === 'en' ? en : zhCn))
 </script>
 
 <template>
-  <router-view></router-view>
+  <el-config-provider :locale="locale">
+    <router-view />
+  </el-config-provider>
 </template>
 
 <style scoped></style>

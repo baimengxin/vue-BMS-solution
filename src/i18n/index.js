@@ -3,11 +3,12 @@ import mZhLocale from './lang/zh'
 import mEnLocale from './lang/en'
 
 import { useMainStore } from '@/stores'
+import { computed } from 'vue'
 
 // 确保安装 pinia
-import { createApp } from 'vue'
-import App from '@/App.vue'
-import pinia from '@/stores'
+// import { createApp } from 'vue'
+// import App from '@/App.vue'
+// import pinia from '@/stores'
 
 const messages = {
   en: {
@@ -23,11 +24,13 @@ const messages = {
 }
 
 // 在用 app.use(pinia) 安装 pinia 插件后，对 useStore() 的任何调用都会正常执行
-const app = createApp(App)
-app.use(pinia)
+// const app = createApp(App)
+// app.use(pinia)
 
 function getLanguage() {
-  return useMainStore().language
+  computed(() => {
+    return useMainStore().language
+  })
 }
 
 const i18n = createI18n({

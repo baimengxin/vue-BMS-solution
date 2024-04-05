@@ -4,7 +4,7 @@ import App from './App.vue'
 import router from './router'
 import pinia from '@/stores'
 import i18n from '@/i18n/index'
-import locale from '@/plugins/element'
+// import locale from '@/plugins/element'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // element-plus 样式
 import 'element-plus/dist/index.css'
@@ -27,7 +27,7 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 app.use(pinia)
 app.use(router)
 app.use(i18n)
-locale(app)
+// locale(app)
 app.use(installIcons)
 
 app.mount('#app')
