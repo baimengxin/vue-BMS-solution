@@ -2,6 +2,10 @@
 import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '@/stores'
+import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
+
+const i18n = useI18n()
 
 // 数据源
 const loginForm = ref({
@@ -15,7 +19,7 @@ const loginRules = ref({
     {
       required: true,
       trigger: 'blur',
-      message: '用户名为必填项'
+      message: i18n.t('msg.login.usernameRule')
     }
   ],
   password: [{ required: true, trigger: 'blur', validator: validatePassword() }]
@@ -61,7 +65,8 @@ const handleLogin = () => {
   <div class="login-container">
     <el-form class="login-form" ref="loginFromRef" :model="loginForm" :rules="loginRules">
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <LangSelect class="lang-select" effect="light" />
       </div>
 
       <el-form-item prop="username">
@@ -106,8 +111,10 @@ const handleLogin = () => {
         style="width: 100%; margin-bottom: 30px"
         :loading="loading"
         @click="handleLogin"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
@@ -175,6 +182,17 @@ const handleLogin = () => {
     text-align: center;
     font-weight: bold;
   }
+
+  .lang-select {
+    position: absolute;
+    top: 4px;
+    right: 0;
+    background-color: #fff;
+    font-size: 22px;
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 }
 
 .show-pwd {
@@ -186,5 +204,10 @@ const handleLogin = () => {
   cursor: pointer;
   user-select: none;
 }
+
+.tips {
+  font-size: 16px;
+  color: #fff;
+  line-height: 20px;
+}
 </style>
-@/stores/modules/user
