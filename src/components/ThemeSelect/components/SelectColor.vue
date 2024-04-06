@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useThemeStore } from '@/stores'
+import { generateNewStyle, writeNewStyle } from '@/utils/theme'
 
 defineProps({
   modelValue: {
@@ -46,7 +47,10 @@ const closed = () => {
  * 3. 关闭 dialog
  */
 const comfirm = async () => {
-  console.log('确定按钮')
+  // 1.1 获取主题色
+  const newStyleText = await generateNewStyle(myColor.value)
+  // 1.2 写入主题色
+  writeNewStyle(newStyleText)
   // 2. 保存最新的主题色
   store.setMainColorFn(myColor.value)
   // 3. 关闭 dialog
