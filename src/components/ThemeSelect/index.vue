@@ -1,8 +1,17 @@
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+import SelectColor from './components/SelectColor.vue'
+
+// 弹出层状态
+const selectColorVisible = ref(false)
+const handleSetTheme = (command) => {
+  selectColorVisible.value = true
+}
+</script>
 
 <template>
   <!-- 下拉菜单 -->
-  <el-dropdown v-bind="$attrs" trigger="click">
+  <el-dropdown v-bind="$attrs" trigger="click" class="theme" @command="handleSetTheme">
     <div>
       <!-- 文字提示 -->
       <el-tooltip :content="$t('msg.navBar.themeChange')">
@@ -21,7 +30,9 @@
   </el-dropdown>
 
   <!-- 展示弹出层 -->
-  <div></div>
+  <div>
+    <SelectColor v-model="selectColorVisible" />
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
