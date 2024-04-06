@@ -109,3 +109,13 @@ pnpm i --save md5
 ```shell
 pnpm add vue-i18n@9
 ```
+
+# 使用 rgb-hex 和 css-color-function
+
+1. rgb-hex：转换RGB(A)颜色为十六进制
+2. css-color-function：在CSS中提出的颜色函数的解析器和转换器
+
+```shell
+pnpm i rgb-hex
+pnpm i css-color-function
+```
