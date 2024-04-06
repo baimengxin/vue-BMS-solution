@@ -3,7 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { filterRouters, generateMenus } from '@/utils/route'
 import { computed } from 'vue'
 import SidebarItem from './SidebarItem.vue'
-import { useMainStore, useThemeStore } from '@/stores'
+import { useMainStore } from '@/stores'
 
 const router = useRouter()
 const routes = computed(() => {
@@ -20,7 +20,7 @@ const activeMenu = computed(() => {
 })
 
 const mainStore = useMainStore()
-const themeStore = useThemeStore()
+// const themeStore = useThemeStore()
 
 // :background-color="'var(--menu-bg)'"
 //     :text-color="'var(--menu-text)'"
@@ -46,7 +46,7 @@ const themeStore = useThemeStore()
 </template>
 
 <style lang="scss" scoped>
-:deep(.el-menu) {
-  // --el-menu-bg-color: var(--menu-bg);
-}
+// :deep(.el-menu) {
+//   // --el-menu-bg-color: var(--menu-bg);
+// }
 </style>

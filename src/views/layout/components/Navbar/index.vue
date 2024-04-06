@@ -3,6 +3,7 @@ import Hamburger from '@/components/Hamburger/index.vue'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
 import LangSelect from '@/components/LangSelect/index.vue'
 import ThemeSelect from '@/components/ThemeSelect/index.vue'
+import Screenfull from '@/components/Screenfull/index.vue'
 import { useUserStore } from '@/stores'
 
 const store = useUserStore()
@@ -19,6 +20,8 @@ const logout = () => {
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <!-- 全屏功能 -->
+      <Screenfull class="right-menu-item hover-effect" />
       <!-- 动态换肤 -->
       <ThemeSelect class="right-menu-item hover-effect" />
       <!-- 国际化 -->

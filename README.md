@@ -119,3 +119,9 @@ pnpm add vue-i18n@9
 pnpm i rgb-hex
 pnpm i css-color-function
 ```
+
+# 使用 screenfull 全屏
+
+```shell
+ pnpm i screenfull
+```
