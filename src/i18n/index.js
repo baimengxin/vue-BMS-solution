@@ -2,13 +2,10 @@ import { createI18n } from 'vue-i18n'
 import mZhLocale from './lang/zh'
 import mEnLocale from './lang/en'
 
-import { useMainStore } from '@/stores'
-import { computed } from 'vue'
-
-// 确保安装 pinia
-// import { createApp } from 'vue'
-// import App from '@/App.vue'
-// import pinia from '@/stores'
+// import { useMainStore } from '@/stores'
+import { ref } from 'vue'
+import { getItem } from '@/utils/storage'
+import { LANG, ZH } from '@/constant'
 
 const messages = {
   en: {
@@ -23,14 +20,15 @@ const messages = {
   }
 }
 
-// 在用 app.use(pinia) 安装 pinia 插件后，对 useStore() 的任何调用都会正常执行
-// const app = createApp(App)
-// app.use(pinia)
+function getLocale() {
+  // 默认值
+  const locale = ref(ZH)
 
-function getLanguage() {
-  computed(() => {
-    return useMainStore().language
-  })
+  if (getItem(LANG)) {
+    locale.value = getItem(LANG) === ZH ? 'zh' : 'en'
+  }
+
+  return locale.value
 }
 
 const i18n = createI18n({
@@ -38,7 +36,7 @@ const i18n = createI18n({
   legacy: false,
   // 全局注入 $t 函数
   globalInjection: true,
-  locale: getLanguage(),
+  locale: getLocale(),
   messages
 })
 

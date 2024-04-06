@@ -1,13 +1,13 @@
 import { getItem, setItem } from '@/utils/storage'
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
-import { LANG } from '@/constant'
+import { LANG, ZH } from '@/constant'
 
 export const useMainStore = defineStore('main', () => {
   // 控制左侧菜单栏的状态
   const sidebarStatus = ref(true)
   // 国际化状态
-  const language = ref(getItem(LANG) || 'zh')
+  const language = ref(getItem(LANG) || ZH)
 
   // 修改左侧菜单的状态
   const changeSidebarStatusFn = () => {

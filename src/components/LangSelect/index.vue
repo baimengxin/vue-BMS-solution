@@ -20,7 +20,6 @@ const language = computed(() => store.language)
 // 切换语言的方法
 const i18n = useI18n()
 const handleSetLanguage = (lang) => {
-  console.log(store.language)
   i18n.locale.value = lang
   store.setLanguageFn(lang)
   ElMessage.success(i18n.t('msg.toast.switchLangSuccess'))
