@@ -70,7 +70,6 @@ const getOriginalStyle = async () => {
   const url = `https://unpkg.com/element-plus@${version}/dist/index.css`
   // 发送请求，访问 element-plus 的 css 网址
   const { data } = await axios(url)
-  console.log(data)
   // 把获取到的数据筛选为原样式模板
   return getStyleTemplate(data)
 }

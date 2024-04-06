@@ -13,5 +13,10 @@ export const useThemeStore = defineStore('theme', () => {
     setItem(MAIN_COLOR, newColor)
   }
 
-  return { mainColor, setMainColorFn }
+  // 修改 css 变量
+  const setStylesFn = (styleName) => {
+    document.documentElement.style.setProperty(styleName, mainColor.value)
+  }
+
+  return { mainColor, setMainColorFn, setStylesFn }
 })
