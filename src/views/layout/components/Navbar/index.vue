@@ -5,6 +5,7 @@ import LangSelect from '@/components/LangSelect/index.vue'
 import ThemeSelect from '@/components/ThemeSelect/index.vue'
 import Screenfull from '@/components/Screenfull/index.vue'
 import HeaderSearch from '@/components/HeaderSearch/index.vue'
+import Guide from '@/components/Guide/index.vue'
 import { useUserStore } from '@/stores'
 
 const store = useUserStore()
@@ -21,6 +22,8 @@ const logout = () => {
     <Breadcrumb class="breadcrumb-container" />
 
     <div class="right-menu">
+      <!-- 引导功能 -->
+      <Guide class="right-menu-item hover-effect" />
       <!-- 搜索功能 -->
       <HeaderSearch class="right-menu-item hover-effect" />
       <!-- 全屏功能 -->

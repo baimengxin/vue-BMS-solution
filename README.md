@@ -131,3 +131,9 @@ pnpm i screenfull
 ```shell
 pnpm install --save fuse.js
 ```
+
+# 使用 driver 引导
+
+```shell
+pnpm i driver.js
+```
