@@ -9,7 +9,7 @@ const onClick = () => {
 
 <template>
   <div class="hamburger-container" @click="onClick">
-    <el-icon :size="30" class="hamburger">
+    <el-icon :size="30" class="hamburger" id="guide-hamburger">
       <Expand v-if="store.sidebarStatus" />
       <Fold v-else />
     </el-icon>

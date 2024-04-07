@@ -102,7 +102,7 @@ watchSwitchLang(() => {
 
 <template>
   <div class="header-search" :class="{ show: isShow }" style="display: flex">
-    <el-icon size="30" @click.stop="onShowClick"><Search /></el-icon>
+    <el-icon id="guide-search" size="30" @click.stop="onShowClick"><Search /></el-icon>
 
     <!-- 搜索框 -->
     <el-select

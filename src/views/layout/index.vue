@@ -11,14 +11,18 @@ const store = useMainStore()
 <template>
   <div class="layout-wrapper" :class="[store.sidebarStatus ? 'openSidebar' : 'hideSidebar']">
     <!-- 左侧 menu -->
-    <Sidebar class="sidebar-container" :style="{ backgroundColor: 'var(--menu-bg)' }" />
+    <Sidebar
+      id="guide-sidebar"
+      class="sidebar-container"
+      :style="{ backgroundColor: 'var(--menu-bg)' }"
+    />
 
     <div class="main-container">
       <div class="fixed-header">
         <Navbar />
 
         <!-- tag 栏 -->
-        <TagsView />
+        <TagsView id="guide-tags" />
       </div>
 
       <AppMain />

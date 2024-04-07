@@ -30,7 +30,7 @@ const handleSetLanguage = (lang) => {
   <el-dropdown trigger="click" class="international" @command="handleSetLanguage">
     <div>
       <el-tooltip :content="$t('msg.navBar.lang')" :effect="effect">
-        <el-icon :size="30"><Tools /></el-icon>
+        <el-icon id="guide-lang" :size="30"><Tools /></el-icon>
       </el-tooltip>
     </div>
     <template #dropdown>

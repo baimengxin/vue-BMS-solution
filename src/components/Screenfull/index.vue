@@ -27,7 +27,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <el-icon size="30" @click="onToggle"><FullScreen /></el-icon>
+  <el-icon id="guide-full" size="30" @click="onToggle"><FullScreen /></el-icon>
 </template>
 
 <style lang="scss" scoped></style>

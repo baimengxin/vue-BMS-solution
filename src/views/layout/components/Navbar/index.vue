@@ -19,7 +19,7 @@ const logout = () => {
     <!-- 控制左侧菜单栏的 汉堡包 -->
     <Hamburger class="hamburger-container" />
     <!-- 面包屑 -->
-    <Breadcrumb class="breadcrumb-container" />
+    <Breadcrumb class="breadcrumb-container" id="guide-breadcrumb" />
 
     <div class="right-menu">
       <!-- 引导功能 -->

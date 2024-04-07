@@ -4,7 +4,7 @@ import SelectColor from './components/SelectColor.vue'
 
 // 弹出层状态
 const selectColorVisible = ref(false)
-const handleSetTheme = (command) => {
+const handleSetTheme = () => {
   selectColorVisible.value = true
 }
 </script>
@@ -15,7 +15,7 @@ const handleSetTheme = (command) => {
     <div>
       <!-- 文字提示 -->
       <el-tooltip :content="$t('msg.navBar.themeChange')">
-        <el-icon size="30"><Brush /></el-icon>
+        <el-icon id="guide-theme" size="30"><Brush /></el-icon>
       </el-tooltip>
     </div>
 
