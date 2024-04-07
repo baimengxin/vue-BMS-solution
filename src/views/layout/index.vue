@@ -2,6 +2,7 @@
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar/index.vue'
 import AppMain from './components/AppMain/index.vue'
+import TagsView from '@/components/TagsView/index.vue'
 import { useMainStore } from '@/stores'
 
 const store = useMainStore()
@@ -15,6 +16,9 @@ const store = useMainStore()
     <div class="main-container">
       <div class="fixed-header">
         <Navbar />
+
+        <!-- tag 栏 -->
+        <TagsView />
       </div>
 
       <AppMain />
