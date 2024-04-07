@@ -123,5 +123,11 @@ pnpm i css-color-function
 # 使用 screenfull 全屏
 
 ```shell
- pnpm i screenfull
+pnpm i screenfull
+```
+
+# 使用 fuse.js 模糊搜索
+
+```shell
+pnpm install --save fuse.js
 ```
