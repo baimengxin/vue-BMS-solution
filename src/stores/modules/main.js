@@ -41,6 +41,24 @@ export const useMainStore = defineStore('main', () => {
     setItem(TAGS_VIEW, tagsViewList.value)
   }
 
+  /**
+   * 删除 tag
+   * @param {type: 'other'||'right'||'index', index: index} payload
+   */
+  const removeTagsViewFn = (payload) => {
+    if (payload.type === 'index') {
+      tagsViewList.value.splice(payload.index, 1)
+    } else if (payload.type === 'other') {
+      // 先删右边
+      tagsViewList.value.splice(payload.index + 1, tagsViewList.value.length - payload.index + 1)
+      // 再删左边
+      tagsViewList.value.splice(0, payload.index)
+    } else if (payload.type === 'right') {
+      tagsViewList.value.splice(payload.index + 1, tagsViewList.value.length - payload.index + 1)
+    }
+    setItem(TAGS_VIEW, tagsViewList.value)
+  }
+
   return {
     sidebarStatus,
     language,
@@ -48,6 +66,7 @@ export const useMainStore = defineStore('main', () => {
     changeSidebarStatusFn,
     setLanguageFn,
     addTagsViewListFn,
-    changeTagsViewFn
+    changeTagsViewFn,
+    removeTagsViewFn
   }
 })

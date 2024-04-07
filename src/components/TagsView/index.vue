@@ -19,7 +19,12 @@ const isActive = (tag) => {
 /**
  * 关闭 tag 的点击事件
  */
-const onCloseClick = (index) => {}
+const onCloseClick = (index) => {
+  store.removeTagsViewFn({
+    type: 'index',
+    index
+  })
+}
 
 // contextMenu 相关
 const visible = ref(true)

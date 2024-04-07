@@ -1,7 +1,8 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import { useMainStore } from '@/stores'
 
-defineProps({
+const props = defineProps({
   index: {
     type: Number,
     required: true
@@ -9,6 +10,7 @@ defineProps({
 })
 
 const router = useRouter()
+const store = useMainStore()
 
 // 刷新
 const onRefreshClick = () => {
@@ -16,10 +18,20 @@ const onRefreshClick = () => {
 }
 
 // 删除右边
-const onCloseRightClick = () => {}
+const onCloseRightClick = () => {
+  store.removeTagsViewFn({
+    type: 'right',
+    index: props.index
+  })
+}
 
 // 除自己，全部删除
-const onCloseOtherClick = () => {}
+const onCloseOtherClick = () => {
+  store.removeTagsViewFn({
+    type: 'other',
+    index: props.index
+  })
+}
 </script>
 
 <template>
