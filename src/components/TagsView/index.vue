@@ -1,10 +1,14 @@
 <script setup>
+import ContextMenu from './components/ContextMenu.vue'
 import { useRoute } from 'vue-router'
 import { useMainStore } from '@/stores'
+import { ref } from 'vue'
+import { reactive } from 'vue'
 
 const route = useRoute()
 const store = useMainStore()
 // const themeStore = useThemeStore()
+
 /**
  * 是否被选中
  */
@@ -16,31 +20,55 @@ const isActive = (tag) => {
  * 关闭 tag 的点击事件
  */
 const onCloseClick = (index) => {}
+
+// contextMenu 相关
+const visible = ref(true)
+const selectIndex = ref(0)
+const menuStyle = reactive({
+  left: 0,
+  top: 0
+})
+
+/**
+ * 鼠标右键事件
+ * */
+const openMenu = (e, index) => {
+  const { x, y } = e
+  menuStyle.left = x + 'px'
+  menuStyle.top = y + 'px'
+  selectIndex.value = index
+  visible.value = true
+}
 </script>
 
 <template>
   <div class="tags-view-container">
-    <router-link
-      class="tags-view-item"
-      :class="isActive(tag) ? 'active' : ''"
-      :style="{
-        backgroundColor: isActive(tag) ? 'var(--menu-bg)' : '',
-        borderColor: isActive(tag) ? 'var(--menu-bg)' : ''
-      }"
-      v-for="(tag, index) in store.tagsViewList"
-      :key="tag.fullPath"
-      :to="{ path: tag.fullPath }"
-    >
-      {{ tag.title }}
-      <el-icon
-        size="10"
-        v-show="!isActive(tag)"
-        class="el-icon-close"
-        @click.prevent.stop="onCloseClick(index)"
+    <el-scrollbar class="tags-view-wrapper">
+      <router-link
+        class="tags-view-item"
+        :class="isActive(tag) ? 'active' : ''"
+        :style="{
+          backgroundColor: isActive(tag) ? 'var(--menu-bg)' : '',
+          borderColor: isActive(tag) ? 'var(--menu-bg)' : ''
+        }"
+        v-for="(tag, index) in store.tagsViewList"
+        :key="tag.fullPath"
+        :to="{ path: tag.fullPath }"
+        @contextmenu.prevent="openMenu($event, index)"
       >
-        <CloseBold
-      /></el-icon>
-    </router-link>
+        {{ tag.title }}
+        <el-icon
+          size="10"
+          v-show="!isActive(tag)"
+          class="el-icon-close"
+          @click.prevent.stop="onCloseClick(index)"
+        >
+          <CloseBold
+        /></el-icon>
+      </router-link>
+    </el-scrollbar>
+
+    <ContextMenu v-show="visible" :style="menuStyle" :index="selectIndex" />
   </div>
 </template>
 
