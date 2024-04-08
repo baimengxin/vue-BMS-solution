@@ -19,6 +19,8 @@ import installIcons from '@/icons'
 // 路由权限
 import './permission'
 
+import installFilter from '@/filter'
+
 const app = createApp(App)
 
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
@@ -29,5 +31,7 @@ app.use(pinia)
 app.use(router)
 app.use(i18n)
 app.use(installIcons)
+// installIcons(app)
+installFilter(app)
 
 app.mount('#app')
