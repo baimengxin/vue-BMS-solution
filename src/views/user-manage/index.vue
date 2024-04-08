@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onActivated } from 'vue'
 import { getUserManageList } from '@/api/user-manage'
 import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
@@ -22,6 +22,8 @@ const getListData = async () => {
 
 getListData()
 watchSwitchLang(getListData)
+// 处理导入用户后数据不重新加载的问题
+onActivated(getListData)
 
 // 分页相关
 /**
