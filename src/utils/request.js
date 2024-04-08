@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/stores'
+import { useMainStore, useUserStore } from '@/stores'
 import { isCheckTimeout } from './auth'
 
 const service = axios.create({
@@ -25,6 +25,9 @@ service.interceptors.request.use(
       config.headers.Authorization = `Bearer ${store.token}`
     }
     config.headers.icode = 'helloqianduanxunlianying'
+    // 配置接口国际化
+    const mainStore = useMainStore()
+    config.headers['Accept-Language'] = mainStore.language
     return config // 必须返回配置
   },
   (error) => {

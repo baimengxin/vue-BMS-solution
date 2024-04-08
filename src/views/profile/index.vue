@@ -4,15 +4,24 @@ import Feature from './components/Feature.vue'
 import Writings from './components/Writings.vue'
 import Author from './components/Author.vue'
 import { ref } from 'vue'
+import { getFeature } from '@/api/user'
+import { watchSwitchLang } from '@/utils/i18n'
 
 const activeName = ref('feature')
+const featureData = ref([])
+const getFeatureData = async () => {
+  featureData.value = await getFeature()
+}
+getFeatureData()
+
+watchSwitchLang(getFeatureData)
 </script>
 
 <template>
   <div class="my-container">
     <el-row>
       <el-col :span="6">
-        <ProjectCard class="user-card" />
+        <ProjectCard class="user-card" :features="featureData" />
       </el-col>
       <el-col :span="18">
         <el-card>
