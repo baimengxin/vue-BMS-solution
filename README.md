@@ -144,3 +144,11 @@ pnpm i driver.js
 pnpm i dayjs
 ~~~
 ```
+
+# 使用 xlsx
+
+```shell
+pnpm i xlsx
+
+~~~
+```
