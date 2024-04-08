@@ -137,3 +137,10 @@ pnpm install --save fuse.js
 ```shell
 pnpm i driver.js
 ```
+
+# 使用 dayjs
+
+```shell
+pnpm i dayjs
+~~~
+```
