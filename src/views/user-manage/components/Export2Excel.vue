@@ -3,6 +3,8 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { watchSwitchLang } from '@/utils/i18n'
 import { getUserManageAllList } from '@/api/user-manage'
+import { USER_RELATIONS } from './Export2ExcelConstants'
+import { dateFilter } from '@/filter'
 
 defineProps({
   modelValue: {
@@ -30,8 +32,43 @@ const emits = defineEmits(['update:modelValue'])
 const onConfirm = async () => {
   loading.value = true
   const res = (await getUserManageAllList()).list
-  console.log(res)
+
+  // 导入工具包
+  const excel = await import('@/utils/Export2Excel')
+
+  const data = formatJson(USER_RELATIONS, res)
+  excel.export_json_to_excel({
+    // excel 表头
+    header: Object.keys(USER_RELATIONS),
+    // excel 数据（二维数组结构）
+    data,
+    // 文件名称
+    filename: excelName.value || exportDefaultName
+  })
   closed()
+}
+
+/**
+ * 该方法将数组转为二维数组
+ * */
+const formatJson = (headers, rows) => {
+  return rows.map((item) => {
+    return Object.keys(headers).map((key) => {
+      // 角色特别处理
+      if (headers[key] === 'role') {
+        const roles = item[headers[key]]
+
+        return JSON.stringify(roles.map((role) => role.title))
+      }
+
+      // 时间特别处理
+      if (headers[key] === 'openTime') {
+        return dateFilter(item[headers[key]])
+      }
+
+      return item[headers[key]]
+    })
+  })
 }
 
 /**

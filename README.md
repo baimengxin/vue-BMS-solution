@@ -146,12 +146,16 @@ pnpm i dayjs
 
 # 使用 xlsx
 
+excel 解析器和编译器
+
 ```shell
 pnpm i xlsx
 
 ```
 
 # 使用 file-saver
+
+文件下载工具
 
 ```shell
 pnpm i file-saver
