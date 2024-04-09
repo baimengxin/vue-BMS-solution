@@ -142,7 +142,6 @@ pnpm i driver.js
 
 ```shell
 pnpm i dayjs
-~~~
 ```
 
 # 使用 xlsx
@@ -150,5 +149,10 @@ pnpm i dayjs
 ```shell
 pnpm i xlsx
 
-~~~
+```
+
+# 使用 file-saver
+
+```shell
+pnpm i file-saver
 ```
