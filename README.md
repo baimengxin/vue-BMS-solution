@@ -160,3 +160,9 @@ pnpm i xlsx
 ```shell
 pnpm i file-saver
 ```
+
+# 使用 vue3-print-nb 打印
+
+```shell
+pnpm i vue3-print-nb
+```
