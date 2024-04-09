@@ -5,6 +5,7 @@ import { watchSwitchLang } from '@/utils/i18n'
 import { useRouter } from 'vue-router'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { useI18n } from 'vue-i18n'
+import Export2Excel from './components/Export2Excel.vue'
 
 // 数据相关
 const tableData = ref([])
@@ -69,6 +70,15 @@ const onRemoveClick = (row) => {
     getListData()
   })
 }
+
+// excel 导出弹窗状态
+const exportToExcelVisible = ref(false)
+/**
+ * excel 导出事件
+ * */
+const onToExcelClick = () => {
+  exportToExcelVisible.value = true
+}
 </script>
 
 <template>
@@ -78,7 +88,7 @@ const onRemoveClick = (row) => {
         <el-button type="primary" @click="onImportExcelClick">
           {{ $t('msg.excel.importExcel') }}
         </el-button>
-        <el-button type="success">
+        <el-button type="success" @click="onToExcelClick">
           {{ $t('msg.excel.exportExcel') }}
         </el-button>
       </div>
@@ -134,6 +144,8 @@ const onRemoveClick = (row) => {
       >
       </el-pagination>
     </el-card>
+
+    <Export2Excel v-model="exportToExcelVisible" />
   </div>
 </template>
 
