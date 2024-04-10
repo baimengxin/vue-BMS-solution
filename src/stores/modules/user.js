@@ -5,7 +5,7 @@ import { ref } from 'vue'
 import md5 from 'md5'
 import { getItem, setItem, removeAllItem } from '@/utils/storage'
 import { TOKEN } from '@/constant'
-import router from '@/router'
+import router, { resetRouter } from '@/router'
 import { setTimeStamp } from '@/utils/auth'
 import { ElMessage } from 'element-plus'
 
@@ -57,6 +57,7 @@ export const useUserStore = defineStore('user', () => {
    * 退出登录
    * */
   const logoutFn = () => {
+    resetRouter()
     // 清空数据
     token.value = ''
     userInfo.value = {}
