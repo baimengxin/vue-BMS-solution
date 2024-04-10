@@ -19,7 +19,10 @@ import installIcons from '@/icons'
 // 路由权限
 import './permission'
 
+// 全局属性
 import installFilter from '@/filter'
+// 指令
+import installDirective from '@/directives'
 
 const app = createApp(App)
 
@@ -33,5 +36,6 @@ app.use(i18n)
 app.use(installIcons)
 // installIcons(app)
 installFilter(app)
+installDirective(app)
 
 app.mount('#app')

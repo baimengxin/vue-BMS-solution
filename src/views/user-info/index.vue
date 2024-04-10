@@ -10,13 +10,31 @@ const props = defineProps({
   }
 })
 
-// 数据相关
+// 用户数据
 const detailData = ref({})
+// 打印 loading 状态
+const printLoading = ref(false)
+
 /**
  * 获取用户详情请求
  * */
 const getUserDetail = async () => {
   detailData.value = await userDetail(props.id)
+}
+
+const printObj = {
+  // 打印区域
+  id: 'userInfoBox',
+  // 打印标题
+  popTitle: 'imooc-vue-element-admin',
+  // 打印前
+  beforeOpenCallback(vue) {
+    printLoading.value = true
+  },
+  // 执行打印
+  openCallback(vue) {
+    printLoading.value = false
+  }
 }
 
 getUserDetail()
@@ -27,10 +45,12 @@ watchSwitchLang(getUserDetail)
 <template>
   <div class="user-info-container">
     <el-card class="print-box">
-      <el-button type="primary">{{ $t('msg.userInfo.print') }}</el-button>
+      <el-button type="primary" :loading="printLoading" v-print="printObj">{{
+        $t('msg.userInfo.print')
+      }}</el-button>
     </el-card>
     <el-card>
-      <div class="user-info-box">
+      <div class="user-info-box" id="userInfoBox">
         <!-- 标题 -->
         <h2 class="title">{{ $t('msg.userInfo.title') }}</h2>
 
