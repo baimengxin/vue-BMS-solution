@@ -32,7 +32,12 @@ const onDistributePermissionClick = (row) => {
       <el-table-column :label="$t('msg.role.name')" prop="title"> </el-table-column>
       <el-table-column :label="$t('msg.role.desc')" prop="describe"> </el-table-column>
       <el-table-column :label="$t('msg.role.action')" prop="action" width="260" #default="{ row }">
-        <el-button type="primary" size="small" @click="onDistributePermissionClick(row)">
+        <el-button
+          type="primary"
+          size="small"
+          @click="onDistributePermissionClick(row)"
+          v-permission="['distributePermission']"
+        >
           {{ $t('msg.role.assignPermissions') }}
         </el-button>
       </el-table-column>
