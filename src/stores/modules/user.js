@@ -50,6 +50,7 @@ export const useUserStore = defineStore('user', () => {
     const res = await getUserInfo()
     // 保存到用户信息
     userInfo.value = res
+    return res
   }
 
   /**
