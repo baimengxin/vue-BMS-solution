@@ -2,7 +2,9 @@
 import { ref, watch } from 'vue'
 import { permissionList } from '@/api/permission'
 import { watchSwitchLang } from '@/utils/i18n'
-import { rolePermission } from '@/api/role'
+import { rolePermission, distributePermission } from '@/api/role'
+import { useI18n } from 'vue-i18n'
+import { ElMessage } from 'element-plus'
 
 const props = defineProps({
   modelValue: {
@@ -15,6 +17,7 @@ const props = defineProps({
   }
 })
 
+const i18n = useI18n()
 const emits = defineEmits(['update:modelValue'])
 const allPermission = ref([])
 const getPermissionList = async () => {
@@ -47,6 +50,12 @@ watch(
   确定按钮点击事件
  */
 const onConfirm = async () => {
+  await distributePermission({
+    roleId: props.roleId,
+    // getCheckedKeys 若节点可用被选中 (show-checkbox 为 true), 它将返回当前选中节点 key 的数组
+    permissions: treeRef.value.getCheckedKeys()
+  })
+  ElMessage.success(i18n.t('msg.role.updateRoleSuccess'))
   closed()
 }
 
