@@ -80,5 +80,12 @@ export const generateMenus = (routes) => {
     }
   })
 
-  return result
+  return filterName(result)
+}
+
+/**
+ * 过滤掉多余的路由
+ * */
+const filterName = (result) => {
+  return Array.from(new Set(result.map(JSON.stringify))).map(JSON.parse)
 }
