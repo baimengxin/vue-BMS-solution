@@ -1,15 +1,19 @@
 <script setup>
 import { ref, onActivated, onMounted } from 'vue'
-import { getArticleList } from '@/api/article'
+import { getArticleList, deleteArticle } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic/index'
 import { tableRef, initSortable } from './sortable/index'
+import { useI18n } from 'vue-i18n'
+import { ElMessageBox, ElMessage } from 'element-plus'
 
 // 数据相关
 const tableData = ref([])
 const total = ref(0)
 const page = ref(1)
 const size = ref(10)
+
+const i18n = useI18n()
 
 // 获取文章数据
 const getListData = async () => {
@@ -39,6 +43,21 @@ const handleSizeChange = (currentSize) => {
 const handleCurrentChange = (currentPage) => {
   page.value = currentPage
   getListData()
+}
+
+// 删除文章
+const onRemoveClick = (row) => {
+  ElMessageBox.confirm(
+    i18n.t('msg.article.dialogTitle1') + row.title + i18n.t('msg.article.dialogTitle2'),
+    {
+      type: 'warning'
+    }
+  ).then(async () => {
+    await deleteArticle(row._id)
+    ElMessage.success(i18n.t('msg.article.removeSuccess'))
+    // 重新渲染数据
+    getListData()
+  })
 }
 
 getListData()
