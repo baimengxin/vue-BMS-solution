@@ -1,8 +1,9 @@
 <script setup>
-import { ref, onActivated } from 'vue'
+import { ref, onActivated, onMounted } from 'vue'
 import { getArticleList } from '@/api/article'
 import { watchSwitchLang } from '@/utils/i18n'
 import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic/index'
+import { tableRef, initSortable } from './sortable/index'
 
 // 数据相关
 const tableData = ref([])
@@ -19,6 +20,10 @@ const getListData = async () => {
   tableData.value = result.list
   total.value = result.total
 }
+
+onMounted(() => {
+  initSortable(tableData, getListData)
+})
 
 /**
  * size 改变触发
@@ -116,5 +121,12 @@ onActivated(getListData)
     margin-top: 20px;
     text-align: center;
   }
+}
+
+// 指定拖拽的样式
+:deep(.sortable-ghost) {
+  opacity: 0.6;
+  color: #fff !important;
+  background: #304156 !important;
 }
 </style>
