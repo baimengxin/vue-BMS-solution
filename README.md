@@ -172,3 +172,11 @@ pnpm i vue3-print-nb
 ```shell
 pnpm i sortablejs
 ```
+
+# 使用 tui.editor
+
+markdown 编辑
+
+```shell
+pnpm i @toast-ui/editor
+```
