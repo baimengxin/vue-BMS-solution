@@ -6,6 +6,7 @@ import { dynamicData, selectDynamicLabel, tableColumns } from './dynamic/index'
 import { tableRef, initSortable } from './sortable/index'
 import { useI18n } from 'vue-i18n'
 import { ElMessageBox, ElMessage } from 'element-plus'
+import { useRouter } from 'vue-router'
 
 // 数据相关
 const tableData = ref([])
@@ -14,6 +15,7 @@ const page = ref(1)
 const size = ref(10)
 
 const i18n = useI18n()
+const router = useRouter()
 
 // 获取文章数据
 const getListData = async () => {
@@ -58,6 +60,11 @@ const onRemoveClick = (row) => {
     // 重新渲染数据
     getListData()
   })
+}
+
+// 查看文章
+const onShowClick = (row) => {
+  router.push(`/article/${row._id}`)
 }
 
 getListData()
