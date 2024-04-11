@@ -41,6 +41,9 @@ dependencies:
   screenfull:
     specifier: ^6.0.2
     version: 6.0.2
+  sortablejs:
+    specifier: ^1.15.2
+    version: 1.15.2
   vue:
     specifier: ^3.4.21
     version: 3.4.21
@@ -2843,6 +2846,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /sortablejs@1.15.2:
+    resolution: {integrity: sha512-FJF5jgdfvoKn1MAKSdGs33bIqLi3LmsgVTliuX6iITj834F+JRQZN90Z93yql8h0K2t0RwDPBmxwlbZfDcxNZA==}
+    dev: false
 
   /source-map-js@1.2.0:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}

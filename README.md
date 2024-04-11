@@ -166,3 +166,9 @@ pnpm i file-saver
 ```shell
 pnpm i vue3-print-nb
 ```
+
+# 使用 sortablejs 拖拽排序
+
+```shell
+pnpm i sortablejs
+```
