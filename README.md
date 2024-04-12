@@ -181,10 +181,12 @@ markdown 编辑
 pnpm i @toast-ui/editor
 ```
 
-# 使用 wangeditor
+# 使用 wangeditor i18next
 
 富文本 编辑器
+i18next 国际化
 
 ```shell
  pnpm i wangeditor
+ pnpm i i18next
 ```
