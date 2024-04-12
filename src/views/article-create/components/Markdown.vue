@@ -5,7 +5,7 @@ import '@toast-ui/editor/dist/i18n/zh-cn'
 import { onMounted } from 'vue'
 import { useMainStore } from '@/stores'
 import { watchSwitchLang } from '@/utils/i18n'
-import { commitArticle } from './commit'
+import { commitArticle, editArticle } from './commit'
 import { watch } from 'vue'
 
 const props = defineProps({
@@ -52,11 +52,20 @@ watchSwitchLang(() => {
 
 // 提交事件
 const onSubmitClick = async () => {
-  await commitArticle({
-    title: props.title,
-    content: mkEditor.getHTML()
-  })
-
+  // 判断是否是 编辑文章
+  if (props.detail && props.detail._id) {
+    // 编辑文章
+    await editArticle({
+      id: props.detail._id,
+      title: props.title,
+      content: mkEditor.getHTML()
+    })
+  } else {
+    await commitArticle({
+      title: props.title,
+      content: mkEditor.getHTML()
+    })
+  }
   mkEditor.reset()
   emits('onSuccess')
 }
