@@ -6,11 +6,15 @@ import { onMounted } from 'vue'
 import { useMainStore } from '@/stores'
 import { watchSwitchLang } from '@/utils/i18n'
 import { commitArticle } from './commit'
+import { watch } from 'vue'
 
 const props = defineProps({
   title: {
     required: true,
     type: String
+  },
+  detail: {
+    type: Object
   }
 })
 
@@ -56,6 +60,19 @@ const onSubmitClick = async () => {
   mkEditor.reset()
   emits('onSuccess')
 }
+
+// 监听编辑，数据回显
+watch(
+  () => props.detail,
+  (val) => {
+    if (val && val.content) {
+      mkEditor.setHTML(val.content)
+    }
+  },
+  {
+    immediate: true
+  }
+)
 </script>
 
 <template>

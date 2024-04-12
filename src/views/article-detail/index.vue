@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue'
 import { articleDetail } from '@/api/article'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 // 数据相关
 const route = useRoute()
@@ -13,6 +13,12 @@ const getArticleDetail = async () => {
   detail.value = await articleDetail(articleId)
 }
 getArticleDetail()
+
+// 编辑按钮
+const router = useRouter()
+const onEditClick = () => {
+  router.push(`/article/editor/${articleId}`)
+}
 </script>
 
 <template>
