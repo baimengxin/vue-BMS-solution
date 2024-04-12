@@ -180,3 +180,11 @@ markdown 编辑
 ```shell
 pnpm i @toast-ui/editor
 ```
+
+# 使用 wangeditor
+
+富文本 编辑器
+
+```shell
+ pnpm i wangeditor
+```
