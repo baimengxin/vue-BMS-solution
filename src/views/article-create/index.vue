@@ -5,6 +5,14 @@ import Editor from './components/Editor.vue'
 
 const title = ref('')
 const activeName = ref('markdown')
+
+/**
+ * markdown 创建文章 成功事件
+ * */
+const onSuccess = () => {
+  // 创建成功后，清空 input 数据
+  title.value = ''
+}
 </script>
 
 <template>
@@ -20,7 +28,7 @@ const activeName = ref('markdown')
 
       <el-tabs v-model="activeName">
         <el-tab-pane :label="$t('msg.article.markdown')" name="markdown">
-          <Markdown />
+          <Markdown :title="title" @onSuccess="onSuccess" />
         </el-tab-pane>
         <el-tab-pane :label="$t('msg.article.richText')" name="editor">
           <Editor />

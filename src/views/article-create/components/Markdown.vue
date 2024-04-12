@@ -5,6 +5,16 @@ import '@toast-ui/editor/dist/i18n/zh-cn'
 import { onMounted } from 'vue'
 import { useMainStore } from '@/stores'
 import { watchSwitchLang } from '@/utils/i18n'
+import { commitArticle } from './commit'
+
+const props = defineProps({
+  title: {
+    required: true,
+    type: String
+  }
+})
+
+const emits = defineEmits(['onSuccess'])
 
 // Editor 实例
 let mkEditor
@@ -12,7 +22,6 @@ let mkEditor
 let el
 onMounted(() => {
   el = document.querySelector('#markdown-box')
-  console.log(store.language)
   initEditor()
 })
 
@@ -36,6 +45,17 @@ watchSwitchLang(() => {
   initEditor()
   mkEditor.setHTML(htmlStr)
 })
+
+// 提交事件
+const onSubmitClick = async () => {
+  await commitArticle({
+    title: props.title,
+    content: mkEditor.getHTML()
+  })
+
+  mkEditor.reset()
+  emits('onSuccess')
+}
 </script>
 
 <template>
